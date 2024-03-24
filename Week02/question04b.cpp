@@ -3,8 +3,13 @@
 // Function to read a character from standard input
 bool getCharacter(char *c)
 {
-    std::cin.get(*c); // Read a single character
-    return true;      // Return true indicating successful read
+    int input = std::cin.get(); // Read a single character
+    if (input == EOF)
+    {
+        return false; // End-of-input reached
+    }
+    *c = static_cast<char>(input); // Place the read character into the pointer
+    return true;                   // Return true indicating successful read
 }
 
 int main()
@@ -22,7 +27,7 @@ int main()
     }
     else
     {
-        std::cout << "Failed to read a character." << std::endl;
+        std::cout << "End-of-input reached." << std::endl;
     }
 
     return 0;
